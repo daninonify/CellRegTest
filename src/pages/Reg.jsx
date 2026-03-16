@@ -95,7 +95,7 @@ function CellRegisterCard({
   meetingDays = "Sundays",
   meetingTime = "4:00 PM - 5:00 PM",
   meetingVenue = "AED Lecture Room 3",
-  photoUrl = "avatarman.png",
+  photoUrl = "avatarman1.png",
   cellAttendanceData = [{ date: "2025-11-16", present: true }],
   chapelAttendanceData = [
     { date: "2025-10-26", present: true },
@@ -127,9 +127,12 @@ function CellRegisterCard({
           <div className="relative bg-slate-900 px-8 py-8 sm:px-12 sm:py-10 overflow-hidden">
             <div className="absolute -top-10 -right-10 w-52 h-52 rounded-full bg-slate-700 opacity-30" />
             <div className="absolute top-6 right-24 w-24 h-24 rounded-full bg-slate-600 opacity-20" />
+            <div className="relative">
+              <p className="mb-2 text-xs uppercase tracking-[0.3em] text-slate-300">Cell Register</p>
+              <div className="mb-5 h-px w-28 bg-slate-600/70" />
+            </div>
             <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <p className="text-xs uppercase tracking-widest text-slate-400 mb-1">Cell Register</p>
                 <h1 className="display-font text-3xl sm:text-4xl text-white leading-tight">{name}</h1>
                 <p className="text-slate-400 text-sm mt-1">{address}</p>
               </div>
@@ -147,7 +150,7 @@ function CellRegisterCard({
             <div className="flex flex-col sm:flex-row gap-8 items-start">
               <div className="flex-shrink-0 mx-auto sm:mx-0">
                 <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden border-4 border-slate-100 shadow-lg">
-                  <img src={photoUrl || "/avatarman.png"} alt={name} className="w-full h-full object-cover" />
+                  <img src={photoUrl || "/avatarman1.png"} alt={name} className="w-full h-full object-cover object-top" />
                 </div>
               </div>
               <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-5">

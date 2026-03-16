@@ -13,7 +13,7 @@
 
 import { useState, useEffect } from "react";
 import axios from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 
 const BIULogo = () => (
@@ -113,9 +113,12 @@ const Login = () => {
           {loading ? "Logging in..." : "Login"}
         </button>
 
-        {/* <p className="mt-5 text-center text-gray-300 dark:text-gray-400 text-sm cursor-pointer hover:text-yellow-400 transition">
-          Forgot your email or password?
-        </p> */}
+        <Link
+          to="/register"
+          className="mt-5 block text-center text-gray-600 dark:text-gray-400 text-sm hover:text-yellow-400 transition"
+        >
+          Click here to register!
+        </Link>
       </div>
     </div>
   );
