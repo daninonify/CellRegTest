@@ -1,4 +1,5 @@
 import { useState } from "react";
+import avatarman1 from "../assets/avatarman1.png";
 
 const StatusBadge = ({ present }) => (
   <span
@@ -94,7 +95,7 @@ export default function CellRegisterCard({
   meetingDays = "Sundays",
   meetingTime = "4:00 PM - 5:00 PM",
   meetingVenue = "AED Lecture Room 3",
-  photoUrl = "rman1.png",
+  photoUrl = avatarman1,
   cellAttendanceData = [{ date: "2025-11-16", present: true }],
   chapelAttendanceData = [
     { date: "2025-10-26", present: true },
@@ -148,7 +149,7 @@ export default function CellRegisterCard({
             <div className="flex flex-col sm:flex-row gap-8 items-start">
               <div className="flex-shrink-0 mx-auto sm:mx-0">
                 <div className="w-36 h-36 sm:w-44 sm:h-44 rounded-2xl overflow-hidden border-4 border-slate-100 shadow-lg">
-                  <img src={photoUrl || "/avatarman1.png"} alt={name} className="w-full h-full object-cover object-top" />
+                  <img src={photoUrl || avatarman1} alt={name} className="w-full h-full object-cover object-top" />
                 </div>
               </div>
               <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-5">
