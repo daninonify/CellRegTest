@@ -13,7 +13,7 @@
 
 import { useState, useEffect } from "react";
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 
 const BIULogo = () => (
@@ -27,9 +27,9 @@ const BIULogo = () => (
         />
       </div>
       <div className="flex flex-col">
-        <span className="text-[#1a2a5e] font-bold text-lg leading-tight tracking-wide">BENSON IDAHOSA</span>
-        <span className="text-[#1a2a5e] font-black font-thin text-3xl leading-tight tracking-widest">UNIVERSITY</span>
-        <span className="text-[#1a2a5e] text-black text-xs font-medium">CAMPUS • LIFE • DIVISION</span>
+        <span className="text-[#1a2a5e] dark:text-white font-bold text-lg leading-tight tracking-wide">BENSON IDAHOSA</span>
+        <span className="text-[#1a2a5e] dark:text-white font-black font-thin text-3xl leading-tight tracking-widest">UNIVERSITY</span>
+        <span className="text-[#1a2a5e] dark:text-gray-300 text-black text-xs font-medium">CAMPUS • LIFE • DIVISION</span>
       </div>
     </div>
   </div>
@@ -40,6 +40,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
@@ -48,6 +49,19 @@ const Login = () => {
   const handleLoadSim = () => {
     setLoading(true);
     setTimeout(() => setLoading(false), 1500);
+  };
+
+  const triggerLogin = () => {
+    if (loading) return;
+    handleLoadSim();
+    navigate('/home');
+  };
+
+  const handleInputKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      triggerLogin();
+    }
   };
 
 
@@ -79,6 +93,7 @@ const Login = () => {
             placeholder="Matriculation Number..."
             value={matric}
             onChange={(e) => setMatric(e.target.value)}
+            onKeyDown={handleInputKeyDown}
             className="w-full px-4 py-3 rounded-full bg-gray-50 dark:bg-gray-700 text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 text-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 transition"
           />
           {/* <input
@@ -90,17 +105,17 @@ const Login = () => {
           /> */}
         </div>
 
-        <Link to="/home"><button
-          onClick={handleLoadSim}
+        <button
+          onClick={triggerLogin}
           disabled={loading}
           className="mt-6 w-full py-3 rounded-full bg-yellow-500 hover:bg-yellow-400 active:bg-yellow-600 text-white font-semibold text-base tracking-wide transition-all duration-200 shadow-md disabled:opacity-70"
         >
           {loading ? "Logging in..." : "Login"}
-        </button></Link>
+        </button>
 
-        <p className="mt-5 text-center text-gray-300 dark:text-gray-400 text-sm cursor-pointer hover:text-yellow-400 transition">
+        {/* <p className="mt-5 text-center text-gray-300 dark:text-gray-400 text-sm cursor-pointer hover:text-yellow-400 transition">
           Forgot your email or password?
-        </p>
+        </p> */}
       </div>
     </div>
   );

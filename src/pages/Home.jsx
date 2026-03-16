@@ -23,7 +23,7 @@ const AttendanceTable = ({ title, subtitle, data }) => {
         <p className="text-sm font-semibold text-slate-700 tracking-tight">{title}</p>
         <p className="text-xs text-slate-400 mt-0.5">{subtitle}</p>
       </div>
-      <div className="overflow-auto flex-1">
+      <div className="overflow-auto flex-1 print:overflow-visible print:flex-none print:max-h-none">
         <table className="w-full">
           <thead>
             <tr className="border-b border-slate-100">
@@ -125,9 +125,12 @@ export default function CellRegisterCard({
           <div className="relative bg-slate-900 px-8 py-8 sm:px-12 sm:py-10 overflow-hidden">
             <div className="absolute -top-10 -right-10 w-52 h-52 rounded-full bg-slate-700 opacity-30" />
             <div className="absolute top-6 right-24 w-24 h-24 rounded-full bg-slate-600 opacity-20" />
+            <div className="relative">
+              <p className="mb-2 text-xs uppercase tracking-[0.3em] text-slate-300">Cell Register</p>
+              <div className="mb-5 h-px w-28 bg-slate-600/70" />
+            </div>
             <div className="relative flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
               <div>
-                <p className="text-xs uppercase tracking-widest text-slate-400 mb-1">Cell Register</p>
                 <h1 className="display-font text-3xl sm:text-4xl text-white leading-tight">{name}</h1>
                 <p className="text-slate-400 text-sm mt-1">{address}</p>
               </div>
