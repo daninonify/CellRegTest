@@ -112,6 +112,8 @@ function CellRegisterCard({
     { date: "2025-11-25", present: true },
   ],
 }) {
+  const [selectedCell, setSelectedCell] = useState("");
+
   return (
     <div className="min-h-screen bg-slate-100 py-10 px-4 sm:px-8">
       <style>{`
@@ -164,33 +166,80 @@ function CellRegisterCard({
             </div>
 
             {/* dropdown section */}
-            <div className="mt-8 space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Cell:</label>
-                <select className="relative z-20 mt-1 block w-1/2 rounded-lg border border-gray-300 bg-white dark:bg-gray-700 py-2 pl-3 pr-10 text-base focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 sm:text-sm shadow">
-                  <option>Select Cell</option>
-                  <option>Shabach (Legacy Campus) Mondays 6pm-8pm</option>
-                  <option>Agape (Legacy Campus) Mondays 6pm-8pm</option>
-                  <option>Cedar (Legacy Campus) Mondays 6pm-8pm</option>
-                  <option>Shekinah (Legacy Campus) Mondays 6pm-8pm</option>
-                  <option>Macademia (Legacy Campus) Mondays 6pm-8pm</option>
-                <option>Shabach (Main Campus) Tuesdays 6pm-8pm</option>
-                </select>
+            <div className="mt-10 space-y-6">
+              <div className="h-px bg-slate-100" />
+
+              <p className="text-xs uppercase tracking-widest text-slate-400 font-medium">
+                Cell Assignment
+              </p>
+
+              {/* Cell dropdown */}
+              <div className="space-y-1.5">
+                <label className="block text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                  Cell
+                </label>
+                <div className="relative w-full sm:w-2/3">
+                  <select
+                    value={selectedCell}
+                    onChange={(e) => setSelectedCell(e.target.value)}
+                    className="appearance-none w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 pr-10 text-sm text-slate-800 font-medium shadow-sm
+                      focus:outline-none focus:ring-1 focus:ring-slate-400 focus:border-slate-400
+                      hover:border-slate-400 transition-all duration-150 cursor-pointer"
+                  >
+                    <option value="" disabled>Select a cell group…</option>
+                    <option>Shabach (Legacy Campus) — Mondays 6–8 pm</option>
+                    <option>Agape (Legacy Campus) — Mondays 6–8 pm</option>
+                    <option>Cedar (Legacy Campus) — Mondays 6–8 pm</option>
+                    <option>Shekinah (Legacy Campus) — Mondays 6–8 pm</option>
+                    <option>Macademia (Legacy Campus) — Mondays 6–8 pm</option>
+                    <option>Shabach (Main Campus) — Tuesdays 6–8 pm</option>
+                  </select>
+                  <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                      <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                    </svg>
+                  </span>
+                </div>
               </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700">Sub-Cell:</label>
-                <select className="relative z-20 mt-1 block w-1/2 rounded-lg border border-gray-300 bg-white dark:bg-gray-700 py-2 pl-3 pr-10 text-base focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400 sm:text-sm shadow">
-                  <option>Select Sub-Cell</option>
-                  <option>Sub 1</option>
-                  <option>Sub 2</option>
-                  <option>Sub 3</option>
-                  <option>Sub 4</option>
-                  <option>Sub 5</option>
-                </select>
+
+              {/* Sub-Cell dropdown */}
+              <div className="space-y-1.5">
+                <label className={`block text-xs font-semibold uppercase tracking-wider transition-colors duration-150 ${selectedCell ? "text-slate-500" : "text-slate-300"}`}>
+                  Sub-Cell
+                </label>
+                <div className={`relative w-full sm:w-2/3 transition-opacity duration-150 ${selectedCell ? "opacity-100" : "opacity-40 pointer-events-none"}`}>
+                  <select
+                    defaultValue=""
+                    disabled={!selectedCell}
+                    className="appearance-none w-full rounded-xl border border-slate-200 bg-white px-4 py-3.5 pr-10 text-sm text-slate-800 font-medium shadow-sm
+                      focus:outline-none focus:ring-1 focus:ring-slate-400 focus:border-slate-400
+                      hover:border-slate-400 transition-all duration-150 cursor-pointer disabled:cursor-not-allowed"
+                  >
+                    <option value="" disabled>Select a sub-cell…</option>
+                    <option>Sub 1</option>
+                    <option>Sub 2</option>
+                    <option>Sub 3</option>
+                    <option>Sub 4</option>
+                    <option>Sub 5</option>
+                  </select>
+                  <span className="pointer-events-none absolute inset-y-0 right-3 flex items-center text-slate-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                      <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+                    </svg>
+                  </span>
+                </div>
               </div>
-              <button className="mt-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-                REGISTER
-              </button>
+
+              {/* Register button */}
+              <div className="pt-2">
+                <button className="inline-flex items-center gap-2 rounded-2xl bg-slate-900 px-8 py-3.5 text-sm font-semibold text-white shadow-md
+                  hover:bg-slate-700 active:scale-95 transition-all duration-150 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:ring-slate-500">
+                  Register
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                    <path fillRule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clipRule="evenodd" />
+                  </svg>
+                </button>
+              </div>
             </div>
 
           </div>
